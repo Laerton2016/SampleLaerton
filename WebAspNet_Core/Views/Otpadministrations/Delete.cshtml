@@ -1,0 +1,57 @@
+﻿@model WebAspNet_Core.Models.Otpadministration
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Otpadministration</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PasswordAdm)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PasswordAdm)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TryPinCounter)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TryPinCounter)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LastDateLogin)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LastDateLogin)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LastDateBlocked)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LastDateBlocked)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LastDateChangePin)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LastDateChangePin)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="OtpadmId" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

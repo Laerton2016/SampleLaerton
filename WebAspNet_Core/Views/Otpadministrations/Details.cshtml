@@ -1,0 +1,54 @@
+﻿@model WebAspNet_Core.Models.Otpadministration
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Otpadministration</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PasswordAdm)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PasswordAdm)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TryPinCounter)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TryPinCounter)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LastDateLogin)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LastDateLogin)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LastDateBlocked)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LastDateBlocked)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LastDateChangePin)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LastDateChangePin)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.OtpadmId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

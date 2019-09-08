@@ -1,0 +1,125 @@
+﻿@model IEnumerable<WebAspNet_Core.Models.MappingLgpdtoken>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Bin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cpflength)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cpfciphered)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LgpdtokenLength)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lgpdtoken)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RangeCounter)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TokenReferenceIdlength)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TokenExpirationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EventCounter)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TimerEventExpiration)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Last4DigitsPan)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CodeValidation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TokenLocation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PcikeyIndex)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CardHolderDataCiphered)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TokenRequestor)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cpflength)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cpfciphered)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LgpdtokenLength)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lgpdtoken)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RangeCounter)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TokenReferenceIdlength)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TokenExpirationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EventCounter)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimerEventExpiration)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Last4DigitsPan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CodeValidation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TokenLocation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PcikeyIndex)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CardHolderDataCiphered)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TokenRequestor.TokenRequestorId)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.TokenReferenceId , id2= item.TokenRequestorId }) 
+                @Html.ActionLink("Details", "Details", new {id = item.TokenReferenceId , id2= item.TokenRequestorId }) 
+                @Html.ActionLink("Delete", "Delete", new { id = item.TokenReferenceId , id2= item.TokenRequestorId})
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

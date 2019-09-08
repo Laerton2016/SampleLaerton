@@ -1,0 +1,105 @@
+﻿@model WebAspNet_Core.Models.MappingLgpdtoken
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>MappingLgpdtoken</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="TokenRequestorId" />
+            <input type="hidden" asp-for="TokenReferenceId" />
+            <div class="form-group">
+                <label asp-for="Bin" class="control-label"></label>
+                <input asp-for="Bin" class="form-control" />
+                <span asp-validation-for="Bin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cpflength" class="control-label"></label>
+                <input asp-for="Cpflength" class="form-control" />
+                <span asp-validation-for="Cpflength" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cpfciphered" class="control-label"></label>
+                <input asp-for="Cpfciphered" class="form-control" />
+                <span asp-validation-for="Cpfciphered" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LgpdtokenLength" class="control-label"></label>
+                <input asp-for="LgpdtokenLength" class="form-control" />
+                <span asp-validation-for="LgpdtokenLength" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Lgpdtoken" class="control-label"></label>
+                <input asp-for="Lgpdtoken" class="form-control" />
+                <span asp-validation-for="Lgpdtoken" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RangeCounter" class="control-label"></label>
+                <input asp-for="RangeCounter" class="form-control" />
+                <span asp-validation-for="RangeCounter" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TokenReferenceIdlength" class="control-label"></label>
+                <input asp-for="TokenReferenceIdlength" class="form-control" />
+                <span asp-validation-for="TokenReferenceIdlength" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TokenExpirationDate" class="control-label"></label>
+                <input asp-for="TokenExpirationDate" class="form-control" />
+                <span asp-validation-for="TokenExpirationDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EventCounter" class="control-label"></label>
+                <input asp-for="EventCounter" class="form-control" />
+                <span asp-validation-for="EventCounter" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TimerEventExpiration" class="control-label"></label>
+                <input asp-for="TimerEventExpiration" class="form-control" />
+                <span asp-validation-for="TimerEventExpiration" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Last4DigitsPan" class="control-label"></label>
+                <input asp-for="Last4DigitsPan" class="form-control" />
+                <span asp-validation-for="Last4DigitsPan" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CodeValidation" class="control-label"></label>
+                <input asp-for="CodeValidation" class="form-control" />
+                <span asp-validation-for="CodeValidation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TokenLocation" class="control-label"></label>
+                <input asp-for="TokenLocation" class="form-control" />
+                <span asp-validation-for="TokenLocation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PcikeyIndex" class="control-label"></label>
+                <input asp-for="PcikeyIndex" class="form-control" />
+                <span asp-validation-for="PcikeyIndex" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CardHolderDataCiphered" class="control-label"></label>
+                <input asp-for="CardHolderDataCiphered" class="form-control" />
+                <span asp-validation-for="CardHolderDataCiphered" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,94 @@
+﻿@model WebAspNet_Core.Models.TokenRequestorRegistration
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>TokenRequestorRegistration</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="TokenRequestorId" />
+            <div class="form-group">
+                <label asp-for="Bin" class="control-label"></label>
+                <input asp-for="Bin" class="form-control" />
+                <span asp-validation-for="Bin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TokenBin" class="control-label"></label>
+                <input asp-for="TokenBin" class="form-control" />
+                <span asp-validation-for="TokenBin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InitialRangeBin" class="control-label"></label>
+                <input asp-for="InitialRangeBin" class="form-control" />
+                <span asp-validation-for="InitialRangeBin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FinalRangeBin" class="control-label"></label>
+                <input asp-for="FinalRangeBin" class="form-control" />
+                <span asp-validation-for="FinalRangeBin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RangeCounter" class="control-label"></label>
+                <input asp-for="RangeCounter" class="form-control" />
+                <span asp-validation-for="RangeCounter" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LabelImkac" class="control-label"></label>
+                <input asp-for="LabelImkac" class="form-control" />
+                <span asp-validation-for="LabelImkac" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LabelPci" class="control-label"></label>
+                <input asp-for="LabelPci" class="form-control" />
+                <span asp-validation-for="LabelPci" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmvkeyIndex" class="control-label"></label>
+                <input asp-for="EmvkeyIndex" class="form-control" />
+                <span asp-validation-for="EmvkeyIndex" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PcikeyIndex" class="control-label"></label>
+                <input asp-for="PcikeyIndex" class="form-control" />
+                <span asp-validation-for="PcikeyIndex" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateExpirationTokenPolicy" class="control-label"></label>
+                <input asp-for="DateExpirationTokenPolicy" class="form-control" />
+                <span asp-validation-for="DateExpirationTokenPolicy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TimeEventExpirationTokenPolicy" class="control-label"></label>
+                <input asp-for="TimeEventExpirationTokenPolicy" class="form-control" />
+                <span asp-validation-for="TimeEventExpirationTokenPolicy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EventCounterMaximuPolicy" class="control-label"></label>
+                <input asp-for="EventCounterMaximuPolicy" class="form-control" />
+                <span asp-validation-for="EventCounterMaximuPolicy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TransactionAmountMaximumPolicy" class="control-label"></label>
+                <input asp-for="TransactionAmountMaximumPolicy" class="form-control" />
+                <span asp-validation-for="TransactionAmountMaximumPolicy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,96 @@
+﻿@model WebAspNet_Core.Models.TokenRequestorRegistration
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TokenRequestorRegistration</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Bin)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bin)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TokenBin)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TokenBin)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.InitialRangeBin)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.InitialRangeBin)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FinalRangeBin)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FinalRangeBin)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RangeCounter)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RangeCounter)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LabelImkac)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LabelImkac)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LabelPci)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LabelPci)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EmvkeyIndex)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EmvkeyIndex)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PcikeyIndex)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PcikeyIndex)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DateExpirationTokenPolicy)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DateExpirationTokenPolicy)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TimeEventExpirationTokenPolicy)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TimeEventExpirationTokenPolicy)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EventCounterMaximuPolicy)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EventCounterMaximuPolicy)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TransactionAmountMaximumPolicy)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TransactionAmountMaximumPolicy)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.TokenRequestorId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

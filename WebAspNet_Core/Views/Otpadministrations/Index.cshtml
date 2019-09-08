@@ -1,0 +1,61 @@
+﻿@model IEnumerable<WebAspNet_Core.Models.Otpadministration>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TryPinCounter)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastDateLogin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastDateBlocked)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastDateChangePin)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TryPinCounter)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastDateLogin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastDateBlocked)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastDateChangePin)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.OtpadmId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.OtpadmId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.OtpadmId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

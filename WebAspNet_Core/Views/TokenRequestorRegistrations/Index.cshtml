@@ -1,0 +1,107 @@
+﻿@model IEnumerable<WebAspNet_Core.Models.TokenRequestorRegistration>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Bin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TokenBin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InitialRangeBin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FinalRangeBin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RangeCounter)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LabelImkac)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LabelPci)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmvkeyIndex)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PcikeyIndex)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateExpirationTokenPolicy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TimeEventExpirationTokenPolicy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EventCounterMaximuPolicy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TransactionAmountMaximumPolicy)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TokenBin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InitialRangeBin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FinalRangeBin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RangeCounter)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LabelImkac)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LabelPci)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmvkeyIndex)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PcikeyIndex)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateExpirationTokenPolicy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeEventExpirationTokenPolicy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EventCounterMaximuPolicy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TransactionAmountMaximumPolicy)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.TokenRequestorId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.TokenRequestorId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.TokenRequestorId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
