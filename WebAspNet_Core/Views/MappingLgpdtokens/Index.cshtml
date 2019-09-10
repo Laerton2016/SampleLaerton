@@ -115,9 +115,9 @@
                 @Html.DisplayFor(modelItem => item.TokenRequestor.TokenRequestorId)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.TokenReferenceId , id2= item.TokenRequestorId }) 
-                @Html.ActionLink("Details", "Details", new {id = item.TokenReferenceId , id2= item.TokenRequestorId }) 
-                @Html.ActionLink("Delete", "Delete", new { id = item.TokenReferenceId , id2= item.TokenRequestorId})
+                @Html.ActionLink("Edit", "Edit", new {  id2 = item.TokenReferenceId,  id= item.TokenRequestorId }) 
+                @Html.ActionLink("Details", "Details", new {id2 = item.TokenReferenceId,  id= item.TokenRequestorId }) 
+                @Html.ActionLink("Delete", "Delete", new { id2 = item.TokenReferenceId,  id= item.TokenRequestorId})
             </td>
         </tr>
 }

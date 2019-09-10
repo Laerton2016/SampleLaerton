@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using WebAspNet_Core.Context;
 using WebAspNet_Core.Models;
 using WebAspNet_Core.Interface;
+using WebAspNet_Core.Repository;
 
 namespace WebAspNet_Core.Controllers
 {
@@ -15,11 +16,13 @@ namespace WebAspNet_Core.Controllers
     {
         private readonly IMappingLgpdtokenRepository _repository;
         private readonly ITokenRequestorRegistrationRepository _tr;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public MappingLgpdtokensController(IMappingLgpdtokenRepository repository, ITokenRequestorRegistrationRepository tr )
+        public MappingLgpdtokensController(IUnitOfWork unitOfWork, TokenizationServiceDAOTokenVaultContext context )
         {
-            _repository = repository;
-            _tr = tr;
+            _unitOfWork = unitOfWork;
+            _repository = new MappingLgpdtokenRepository(_unitOfWork, context);
+            _tr = new TokenRequestorRegistrationRepository(_unitOfWork, context);
         }
 
         // GET: MappingLgpdtokens
@@ -64,7 +67,9 @@ namespace WebAspNet_Core.Controllers
         {
             if (ModelState.IsValid)
             {
-                _repository.InsertPersistence(mappingLgpdtoken);
+                //_repository.InsertPersistence(mappingLgpdtoken);
+                _repository.Add(mappingLgpdtoken); 
+                _unitOfWork.Commit();
                 return RedirectToAction(nameof(Index));
             }
             ViewData["TokenRequestorId"] = new SelectList(_repository.FindAll(), "TokenRequestorId", "TokenRequestorId", mappingLgpdtoken.TokenRequestorId);
@@ -92,8 +97,7 @@ namespace WebAspNet_Core.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Edit(string id, [Bind("TokenRequestorId,TokenReferenceId,Bin,Cpflength,Cpfciphered,LgpdtokenLength,Lgpdtoken,RangeCounter,TokenReferenceIdlength,TokenExpirationDate,EventCounter,TimerEventExpiration,Last4DigitsPan,CodeValidation,TokenLocation,PcikeyIndex,CardHolderDataCiphered")] MappingLgpdtoken mappingLgpdtoken)
+        public IActionResult EditDados(string id, [Bind("TokenRequestorId,TokenReferenceId,Bin,Cpflength,Cpfciphered,LgpdtokenLength,Lgpdtoken,RangeCounter,TokenReferenceIdlength,TokenExpirationDate,EventCounter,TimerEventExpiration,Last4DigitsPan,CodeValidation,TokenLocation,PcikeyIndex,CardHolderDataCiphered")] MappingLgpdtoken mappingLgpdtoken)
         {
             if (id != mappingLgpdtoken.TokenRequestorId)
             {
@@ -104,7 +108,9 @@ namespace WebAspNet_Core.Controllers
             {
                 try
                 {
-                    _repository.UpdatePersistence(mappingLgpdtoken);
+                    //_repository.UpdatePersistence(mappingLgpdtoken);
+                    _repository.Update(mappingLgpdtoken);
+                    _unitOfWork.Commit();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -145,7 +151,9 @@ namespace WebAspNet_Core.Controllers
         public IActionResult DeleteConfirmed(string id , string id2)
         {
             var mappingLgpdtoken =_repository.Find(id, id2);
-            _repository.DeletePersistence(mappingLgpdtoken);
+            //_repository.DeletePersistence(mappingLgpdtoken);
+            _repository.Remove(mappingLgpdtoken);
+            _unitOfWork.Commit();
             
             return RedirectToAction(nameof(Index));
         }

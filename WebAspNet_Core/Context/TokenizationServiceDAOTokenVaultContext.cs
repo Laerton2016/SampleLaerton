@@ -30,6 +30,7 @@ namespace WebAspNet_Core.Context
             {
 
                 optionsBuilder.UseSqlServer("Server=DESKTOP-BGBIQTU;user=sa;password=sil495798;Database=TokenizationService.DAO.TokenVault;Trusted_Connection=True;");
+                
             }
         }
 

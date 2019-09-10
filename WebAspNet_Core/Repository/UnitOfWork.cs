@@ -17,7 +17,7 @@ namespace WebAspNet_Core.Repository
         {
             _entidadesAdd = new Dictionary<IPersistenceBase, IUnitOfWorkRepository>();
             _entidadesRemove = new Dictionary<IPersistenceBase, IUnitOfWorkRepository>();
-            _entidadesRemove = new Dictionary<IPersistenceBase, IUnitOfWorkRepository>();
+            _entidadesUpdate = new Dictionary<IPersistenceBase, IUnitOfWorkRepository>();
         }
         public void Commit()
         {
