@@ -12,5 +12,6 @@ namespace WebAspNet_Core.Interface
         void Update(TokenServiceProviderConfig token);
         void Remove(TokenServiceProviderConfig token);
         IList<TokenServiceProviderConfig> FindAll();
+        TokenServiceProviderConfig Find(String id);
     }
 }

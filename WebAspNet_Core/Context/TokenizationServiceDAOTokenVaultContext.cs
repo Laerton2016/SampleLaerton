@@ -26,12 +26,8 @@ namespace WebAspNet_Core.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-
-                optionsBuilder.UseSqlServer("Server=DESKTOP-BGBIQTU;user=sa;password=sil495798;Database=TokenizationService.DAO.TokenVault;Trusted_Connection=True;");
-                
-            }
+            optionsBuilder.UseSqlServer(@"Server=localhost\sqlexpress;user=sa;password=sil495798;Database=TokenizationService.DAO.TokenVault;Trusted_Connection=True;");
+            //optionsBuilder.UseSqlServer("Server=DESKTOP-BGBIQTU;user=sa;password=sil495798;Database=TokenizationService.DAO.TokenVault;Trusted_Connection=True;"); // configuração para usar em minha maquina
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -37,7 +37,9 @@ namespace WebAspNet_Core
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            var connection = @"Server=DESKTOP-BGBIQTU;user=sa;password=sil495798;Database=TokenizationService.DAO.TokenVault;Trusted_Connection=True;";
+
+            //var connection = @"Server=DESKTOP-BGBIQTU;user=sa;password=sil495798;Database=TokenizationService.DAO.TokenVault;Trusted_Connection=True;"; //Configuração para usar na minha maquina
+            var connection = @"Server=localhost\sqlexpress;user=sa;password=sil495798;Database=TokenizationService.DAO.TokenVault;Trusted_Connection=True";
             services.AddDbContext<TokenizationServiceDAOTokenVaultContext>(o => o.UseSqlServer(connection));
             services.AddScoped<IMappingLgpdtokenRepository, MappingLgpdtokenRepository>();
             services.AddScoped<IMappingPaymentTokenRepository, MappingPaymentTokenRepository>();
@@ -56,7 +58,7 @@ namespace WebAspNet_Core
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler(" / Home/Error");
                 app.UseHsts();
             }
 

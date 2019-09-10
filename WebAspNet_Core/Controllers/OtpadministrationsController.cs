@@ -14,10 +14,12 @@ namespace WebAspNet_Core.Controllers
     public class OtpadministrationsController : Controller
     {
         private readonly IOtpadministrationRepository _repository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public OtpadministrationsController(IOtpadministrationRepository repository)
+        public OtpadministrationsController(IUnitOfWork unitOfWork, TokenizationServiceDAOTokenVaultContext context)
         {
-            _repository = repository;
+            _unitOfWork = unitOfWork;
+            _repository = new OtpadministrationRepository(unitOfWork, context );
         }
 
         
@@ -59,7 +61,8 @@ namespace WebAspNet_Core.Controllers
         {
             if (ModelState.IsValid)
             {
-                _repository.InsertPersistence(otpadministration);
+                _repository.Add(otpadministration);
+                _unitOfWork.Commit();
                 return RedirectToAction(nameof(Index));
             }
             return View(otpadministration);
@@ -97,7 +100,8 @@ namespace WebAspNet_Core.Controllers
             {
                 try
                 {
-                    _repository.UpdatePersistence(otpadministration);
+                    _repository.Update(otpadministration);
+                    _unitOfWork.Commit();
                     
                 }
                 catch (DbUpdateConcurrencyException)
@@ -140,7 +144,8 @@ namespace WebAspNet_Core.Controllers
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
             var otpadministration = _repository.Find(id);
-            _repository.DeletePersistence(otpadministration);
+            _repository.Remove(otpadministration);
+            _unitOfWork.Commit();
             return RedirectToAction(nameof(Index));
         }
 

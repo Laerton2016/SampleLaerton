@@ -97,13 +97,9 @@ namespace WebAspNet_Core.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        public IActionResult EditDados(string id, [Bind("TokenRequestorId,TokenReferenceId,Bin,Cpflength,Cpfciphered,LgpdtokenLength,Lgpdtoken,RangeCounter,TokenReferenceIdlength,TokenExpirationDate,EventCounter,TimerEventExpiration,Last4DigitsPan,CodeValidation,TokenLocation,PcikeyIndex,CardHolderDataCiphered")] MappingLgpdtoken mappingLgpdtoken)
+        [ValidateAntiForgeryToken]
+        public IActionResult EditDados(MappingLgpdtoken mappingLgpdtoken)
         {
-            if (id != mappingLgpdtoken.TokenRequestorId)
-            {
-                return NotFound();
-            }
-
             if (ModelState.IsValid)
             {
                 try

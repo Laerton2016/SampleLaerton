@@ -35,6 +35,11 @@ namespace WebAspNet_Core.Repository
             return _context.TokenServiceProviderConfig.ToList();
         }
 
+        public TokenServiceProviderConfig Find(string id)
+        {
+            return _context.TokenServiceProviderConfig.Find(id);
+        }
+
         public void InsertPersistence(IPersistenceBase entidade)
         {
             _context.TokenServiceProviderConfig.Add((TokenServiceProviderConfig)entidade);

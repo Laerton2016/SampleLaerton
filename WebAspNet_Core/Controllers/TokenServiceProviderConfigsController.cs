@@ -6,35 +6,39 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WebAspNet_Core.Context;
+using WebAspNet_Core.Interface;
 using WebAspNet_Core.Models;
+using WebAspNet_Core.Repository;
 
 namespace WebAspNet_Core.Controllers
 {
     public class TokenServiceProviderConfigsController : Controller
     {
-        private readonly TokenizationServiceDAOTokenVaultContext _context;
 
-        public TokenServiceProviderConfigsController(TokenizationServiceDAOTokenVaultContext context)
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly ITokenServiceProviderConfigRepository _repository;
+        public TokenServiceProviderConfigsController(IUnitOfWork unitOfWork, TokenizationServiceDAOTokenVaultContext context)
         {
-            _context = context;
+            _unitOfWork = unitOfWork;
+            _repository = new TokenServiceProviderConfigRepository(_unitOfWork, context);
         }
 
         // GET: TokenServiceProviderConfigs
-        public async Task<IActionResult> Index()
+        public  IActionResult Index()
         {
-            return View(await _context.TokenServiceProviderConfig.ToListAsync());
+            return View( _repository.FindAll());
         }
 
         // GET: TokenServiceProviderConfigs/Details/5
-        public async Task<IActionResult> Details(string id)
+        public IActionResult Details(string id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var tokenServiceProviderConfig = await _context.TokenServiceProviderConfig
-                .FirstOrDefaultAsync(m => m.TokenServiceProviderCode == id);
+            var tokenServiceProviderConfig = _repository.FindAll().FirstOrDefault
+                (m => m.TokenServiceProviderCode == id);
             if (tokenServiceProviderConfig == null)
             {
                 return NotFound();
@@ -54,26 +58,26 @@ namespace WebAspNet_Core.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TokenServiceProviderCode,ParametersJson")] TokenServiceProviderConfig tokenServiceProviderConfig)
+        public IActionResult Create([Bind("TokenServiceProviderCode,ParametersJson")] TokenServiceProviderConfig tokenServiceProviderConfig)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(tokenServiceProviderConfig);
-                await _context.SaveChangesAsync();
+                _repository.Add(tokenServiceProviderConfig);
+                _unitOfWork.Commit();
                 return RedirectToAction(nameof(Index));
             }
             return View(tokenServiceProviderConfig);
         }
 
         // GET: TokenServiceProviderConfigs/Edit/5
-        public async Task<IActionResult> Edit(string id)
+        public IActionResult Edit(string id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var tokenServiceProviderConfig = await _context.TokenServiceProviderConfig.FindAsync(id);
+            var tokenServiceProviderConfig = _repository.Find(id);
             if (tokenServiceProviderConfig == null)
             {
                 return NotFound();
@@ -86,7 +90,7 @@ namespace WebAspNet_Core.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("TokenServiceProviderCode,ParametersJson")] TokenServiceProviderConfig tokenServiceProviderConfig)
+        public IActionResult Edit(string id, [Bind("TokenServiceProviderCode,ParametersJson")] TokenServiceProviderConfig tokenServiceProviderConfig)
         {
             if (id != tokenServiceProviderConfig.TokenServiceProviderCode)
             {
@@ -97,8 +101,8 @@ namespace WebAspNet_Core.Controllers
             {
                 try
                 {
-                    _context.Update(tokenServiceProviderConfig);
-                    await _context.SaveChangesAsync();
+                    _repository.Update(tokenServiceProviderConfig);
+                    _unitOfWork.Commit();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -117,15 +121,15 @@ namespace WebAspNet_Core.Controllers
         }
 
         // GET: TokenServiceProviderConfigs/Delete/5
-        public async Task<IActionResult> Delete(string id)
+        public  IActionResult Delete(string id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var tokenServiceProviderConfig = await _context.TokenServiceProviderConfig
-                .FirstOrDefaultAsync(m => m.TokenServiceProviderCode == id);
+            var tokenServiceProviderConfig = _repository.FindAll().FirstOrDefault
+                (m => m.TokenServiceProviderCode == id);
             if (tokenServiceProviderConfig == null)
             {
                 return NotFound();
@@ -137,17 +141,17 @@ namespace WebAspNet_Core.Controllers
         // POST: TokenServiceProviderConfigs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
+        public IActionResult DeleteConfirmed(string id)
         {
-            var tokenServiceProviderConfig = await _context.TokenServiceProviderConfig.FindAsync(id);
-            _context.TokenServiceProviderConfig.Remove(tokenServiceProviderConfig);
-            await _context.SaveChangesAsync();
+            var tokenServiceProviderConfig = _repository.Find(id);
+            _repository.Remove(tokenServiceProviderConfig);
+            _unitOfWork.Commit();
             return RedirectToAction(nameof(Index));
         }
 
         private bool TokenServiceProviderConfigExists(string id)
         {
-            return _context.TokenServiceProviderConfig.Any(e => e.TokenServiceProviderCode == id);
+            return _repository.FindAll().Any(e => e.TokenServiceProviderCode == id);
         }
     }
 }

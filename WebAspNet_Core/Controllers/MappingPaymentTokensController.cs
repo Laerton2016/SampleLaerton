@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using WebAspNet_Core.Context;
 using WebAspNet_Core.Models;
 using WebAspNet_Core.Interface;
+using WebAspNet_Core.Repository;
 
 namespace WebAspNet_Core.Controllers
 {
@@ -15,11 +16,13 @@ namespace WebAspNet_Core.Controllers
     {
         private readonly IMappingPaymentTokenRepository _repository;
         private readonly ITokenRequestorRegistrationRepository _tr;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public MappingPaymentTokensController(IMappingPaymentTokenRepository repository, ITokenRequestorRegistrationRepository tr)
+        public MappingPaymentTokensController(IUnitOfWork unitOfWork, TokenizationServiceDAOTokenVaultContext context)
         {
-            _repository = repository;
-            _tr = tr;
+            _unitOfWork = unitOfWork;
+            _repository = new MappingPaymentTokenRepository(_unitOfWork, context);
+            _tr = new TokenRequestorRegistrationRepository(_unitOfWork, context);
         }
 
         // GET: MappingPaymentTokens
@@ -63,7 +66,8 @@ namespace WebAspNet_Core.Controllers
         {
             if (ModelState.IsValid)
             {
-                _repository.InsertPersistence(mappingPaymentToken);
+                _repository.Add(mappingPaymentToken);
+                _unitOfWork.Commit();
                 
                 return RedirectToAction(nameof(Index));
             }
@@ -93,18 +97,16 @@ namespace WebAspNet_Core.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(string id, [Bind("TokenRequestorId,TokenReferenceId,Bin,Panlength,Panciphered,PanexpirationDateCiphered,TokenLength,PaymentToken,RangeCounter,TokenReferenceIdlength,TokenExpirationDate,Atc,EventCounter,TimerEventExpiration,Last4DigitsPan,CodeValidation,TokenLocation,EmvkeyIndex,PcikeyIndex,AccountAndCardHolderDataAndDeviceDataCiphered")] MappingPaymentToken mappingPaymentToken)
+        public IActionResult EditConfirmed(MappingPaymentToken mappingPaymentToken)
+        
         {
-            if (id != mappingPaymentToken.TokenReferenceId)
-            {
-                return NotFound();
-            }
-
+           
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _repository.UpdatePersistence(mappingPaymentToken);
+                    _repository.Update(mappingPaymentToken);
+                    _unitOfWork.Commit();
                     
                 }
                 catch (DbUpdateConcurrencyException)
@@ -146,7 +148,8 @@ namespace WebAspNet_Core.Controllers
         {
             
             var mappingPaymentToken = _repository.Find(id, id2);
-            _repository.DeletePersistence(mappingPaymentToken);
+            _repository.Remove(mappingPaymentToken);
+            _unitOfWork.Commit();
             
             return RedirectToAction(nameof(Index));
         }

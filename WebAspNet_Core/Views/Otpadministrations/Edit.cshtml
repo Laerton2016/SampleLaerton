@@ -10,47 +10,44 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        @using (Html.BeginForm("index", "Otpadministrations", FormMethod.Post))
-        {
-            
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <input type="hidden" asp-for="OtpadmId" />
-                <div class="form-group">
-                    <label asp-for="PasswordAdm" class="control-label"></label>
-                    <input asp-for="PasswordAdm" class="form-control" type="password" />
-                    <span asp-validation-for="PasswordAdm" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Status" class="control-label"></label>
-                    <input asp-for="Status" class="form-control" />
-                    <span asp-validation-for="Status" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="TryPinCounter" class="control-label"></label>
-                    <input asp-for="TryPinCounter" class="form-control" />
-                    <span asp-validation-for="TryPinCounter" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="LastDateLogin" class="control-label"></label>
-                    <input asp-for="LastDateLogin" class="form-control" />
-                    <span asp-validation-for="LastDateLogin" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="LastDateBlocked" class="control-label"></label>
-                    <input asp-for="LastDateBlocked" class="form-control" />
-                    <span asp-validation-for="LastDateBlocked" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="LastDateChangePin" class="control-label"></label>
-                    <input asp-for="LastDateChangePin" class="form-control" />
-                    <span asp-validation-for="LastDateChangePin" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Save" class="btn btn-default" />
-                </div>
-            
-        }
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="OtpadmId" />
+            <div class="form-group">
+                <label asp-for="PasswordAdm" class="control-label"></label>
+                <input asp-for="PasswordAdm" class="form-control" type="password" />
+                <span asp-validation-for="PasswordAdm" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <input asp-for="Status" class="form-control" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TryPinCounter" class="control-label"></label>
+                <input asp-for="TryPinCounter" class="form-control" />
+                <span asp-validation-for="TryPinCounter" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastDateLogin" class="control-label"></label>
+                <input asp-for="LastDateLogin" class="form-control" />
+                <span asp-validation-for="LastDateLogin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastDateBlocked" class="control-label"></label>
+                <input asp-for="LastDateBlocked" class="form-control" />
+                <span asp-validation-for="LastDateBlocked" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastDateChangePin" class="control-label"></label>
+                <input asp-for="LastDateChangePin" class="form-control" />
+                <span asp-validation-for="LastDateChangePin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
 
+        </form>
     </div>
 </div>
 

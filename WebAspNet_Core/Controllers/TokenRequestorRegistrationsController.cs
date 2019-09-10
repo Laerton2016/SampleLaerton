@@ -8,16 +8,18 @@ using Microsoft.EntityFrameworkCore;
 using WebAspNet_Core.Context;
 using WebAspNet_Core.Models;
 using WebAspNet_Core.Interface;
+using WebAspNet_Core.Repository;
 
 namespace WebAspNet_Core.Controllers
 {
     public class TokenRequestorRegistrationsController : Controller
     {
         private readonly ITokenRequestorRegistrationRepository _repository;
-
-        public TokenRequestorRegistrationsController(ITokenRequestorRegistrationRepository repository)
+        private readonly IUnitOfWork _unitOfWork;
+        public TokenRequestorRegistrationsController(IUnitOfWork unitOfWork, TokenizationServiceDAOTokenVaultContext context)
         {
-            _repository = repository;
+            _unitOfWork = unitOfWork;
+            _repository = new TokenRequestorRegistrationRepository(_unitOfWork, context);
         }
 
         // GET: TokenRequestorRegistrations
@@ -59,7 +61,8 @@ namespace WebAspNet_Core.Controllers
         {
             if (ModelState.IsValid)
             {
-                _repository.InsertPersistence(tokenRequestorRegistration);
+                _repository.Add(tokenRequestorRegistration);
+                _unitOfWork.Commit();
                 return RedirectToAction(nameof(Index));
             }
             return View(tokenRequestorRegistration);
@@ -97,7 +100,8 @@ namespace WebAspNet_Core.Controllers
             {
                 try
                 {
-                    _repository.UpdatePersistence(tokenRequestorRegistration);
+                    _repository.Update(tokenRequestorRegistration);
+                    _unitOfWork.Commit();
                     
                 }
                 catch (DbUpdateConcurrencyException)
@@ -140,7 +144,8 @@ namespace WebAspNet_Core.Controllers
         public IActionResult DeleteConfirmed(string id)
         {
             var tokenRequestorRegistration = _repository.Find(id);
-            _repository.DeletePersistence(tokenRequestorRegistration);
+            _repository.Remove(tokenRequestorRegistration);
+            _unitOfWork.Commit();
             return RedirectToAction(nameof(Index));
         }
 

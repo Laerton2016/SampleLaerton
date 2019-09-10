@@ -386,7 +386,7 @@ using WebAspNet_Core.Models;
             WriteLiteral("\r\n        </dd>\r\n    </dl>\r\n    \r\n    ");
             EndContext();
             BeginContext(3216, 248, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dd36a59dfe34474d9f8c37c4790e1f69", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b322b57394534195a0b653e2d88deaff", async() => {
                 BeginContext(3242, 46, true);
                 WriteLiteral("\r\n        \r\n        <a class=\"btn btn-default\"");
                 EndContext();
@@ -401,7 +401,7 @@ WriteAttributeValue("", 3295, Url.Action("DeleteConfirmed", new {id = Model.Toke
                 WriteLiteral(">Delete</a>\r\n        ");
                 EndContext();
                 BeginContext(3413, 38, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "380f9fa2f1664e47bf1379c50e678b20", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7f7f8649bb004c989a02c934844318fb", async() => {
                     BeginContext(3435, 12, true);
                     WriteLiteral("Back to List");
                     EndContext();

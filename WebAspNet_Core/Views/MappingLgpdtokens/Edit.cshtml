@@ -10,7 +10,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        @using (Html.BeginForm("EditDados", "MappingLgpdtokens", FormMethod.Post))
+        @using (Html.BeginForm("EditDados", "MappingLgpdtokens", FormMethod.Post, new{id ="formDados"}))
         {
             
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -92,7 +92,7 @@
                     <span asp-validation-for="CardHolderDataCiphered" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <input type="submit" value="Save" class="btn btn-default" />
+                    <a class="btn btn-default" onclick="submter()"> Save1</a>
                 </div>
             
         }
@@ -106,4 +106,11 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    
+    <script type="text/javascript">
+        function submter() {
+            document.getElementById("formDados").submit();
+            
+        }
+    </script>
 }
